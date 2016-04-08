@@ -1,0 +1,28 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+
+%opening
+\title{Pay to Tagged Addresses (P2TA): Tagging blockchain transactions for queryability}
+\author{Hans Robeers hrobeers@... twitter.com/hrobeers}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Multiple applications are using existing blockchains as a communication network.
+Most of these implementations are scanning to blockchain for transactions matching their own format.
+However, processing large blockchains to find application specific transactions can be expensive to execute.
+This paper proposes a tagging mechanism, Pay to Tagged Addresses (P2TA), that allows quick lookup of application specific transactions based on the addition of deterministic output addresses.
+\end{abstract}
+
+\section{Introduction}
+Blockchains are used increasingly for non-currency applications.
+Examples of non-currency usage includes Colored Coins \_ref\_colored\_coins\_, PeerMessage \_ref\_peermessage\_, PSA \_ref\_psa\_ and multiple others.
+These applications typically publish there own specific messages in the form of OP\_RETURN transactions on a third-party blockchain.
+Scanning an entire blockchain for messages of a specific form becomes increasingly expensive while the blockchain grows.
+Applications like PeerMessage \_ref\_peermessage\_ only rely on real-time transactions being relayed by the network and therefore do not suffer from blockchain growth.
+However, applications like PSA \_ref\_psa\_ need know the entire history of transactions of a specific type to be able to validate asset ownership.
+Therefore these type of applications greatly benefit from a system that allows fast querying of transactions holding a specific tag.
+
+\end{document}

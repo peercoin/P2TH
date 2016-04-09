@@ -18,12 +18,12 @@ This paper proposes a tagging mechanism, Pay-to-TagAddress (P2TA), that allows e
 \end{abstract}
 
 \section{Introduction}
-Blockchains, as first introduced by the Bitcoin\cite{Nak09} network, are used increasingly for non-currency applications.
-Examples of non-currency usage includes Colored Coins\cite{Ros12}, PeerMessage\cite{Emeth}, PSA\cite{Pchem} and multiple others.
+Blockchains, as first introduced by the Bitcoin~\cite{Nak09} network, are used increasingly for non-currency applications.
+Examples of non-currency usage includes Colored Coins~\cite{Ros12}, PeerMessage~\cite{Emeth}, PSA~\cite{Pchem} and multiple others.
 These applications typically publish there own specific messages in the form of OP\_RETURN transactions on a third-party blockchain.
 Scanning an entire blockchain for messages of a specific form becomes increasingly expensive while the blockchain grows.
-Applications like PeerMessage\cite{Emeth} only rely on real-time transactions being relayed by the network and therefore do not suffer from blockchain growth.
-However, applications like PSA\cite{Pchem} need know an entire history of asset specific transactions to be able to validate asset ownership.
+Applications like PeerMessage~\cite{Emeth} only rely on real-time transactions being relayed by the network and therefore do not suffer from blockchain growth.
+However, applications like PSA~\cite{Pchem} need know an entire history of asset specific transactions to be able to validate asset ownership.
 Therefore these type of applications would greatly benefit from a system that allows efficient querying of transactions holding a specific tag.
 
 \section{Blockchain queryability}
@@ -33,6 +33,7 @@ Querying for non-indexed data on the blockchain can be considered inefficient an
 For efficient queryability of application specific entities on the blockchain, a tagging mechanism based on the indexed propeties can be used.
 
 \section{Deterministic tagged address}
+\label{sec:taggedaddress}
 Blockchain addresses are typically created by hashing the public key of a public/private keypair.
 To generate secure addresses it is recommended to use a strong random number as a private key.
 However, as long as little or no funds are transferred to an address, there is no need for the address to be secure to teft.
@@ -50,9 +51,10 @@ $ bitcoin-tool --input-type private-key
 194aYsKYk7nF8Lf7Dak4vQaDg85wqPDy1g
 \end{verbatim}
 
-\section{Tagging transactions}
-Tagging a transaction is done by adding a Pay-to-PubkeyHash transaction with the minimum transaction value to the transaction outputs.
-Altough indistinguisable from a standard Pay-to-PubkeyHash output, we refer to these outputs as Pay-to-TagAddress or P2TA in short.
+\section{Tagged transaction}
+To tag a transaction, a Pay-to-PubkeyHash output to a tagged address is added to the transaction's outputs.
+For this the transaction to be valid, the value may need to be non-zero depending on the blockchain used.
+Altough this transaction output is indistinguisable from a standard Pay-to-PubkeyHash output, we refer to these outputs as Pay-to-TagAddress or P2TA in short.
 
 As an example, the code below creates a tagged transaction using bitcoin's JSON-RPC api.
 \begin{verbatim}
@@ -61,6 +63,14 @@ TODO
 
 
 \section{Querying tagged transactions}
+Most blockchain clients can efficiently query addresses and their linked transactions by their id.
+Efficiently finding transactions tagged by a known tag is done as follows:
+\begin{itemize}
+ \item Generate the tagged address as described in section~\ref{sec:taggedaddress}.
+ \item Query the generated address.
+ \item The tagged transactions are the incoming transactions on this address.
+\end{itemize}
+
 
 \section{Use case}
 

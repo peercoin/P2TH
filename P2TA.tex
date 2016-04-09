@@ -41,13 +41,13 @@ Therefore private keys obtained by hashing a publicly known string can generate 
 
 As an example, the command below demonstrates how a tagged address for tag ``my tag'' on the bitcoin network can be created using bitcoin-tool~\cite{Matja}.
 \begin{verbatim}
-$ bitcoin-tool --input-type private-key
-               --input-format hex
-               --output-format base58check
-               --network bitcoin
-               --output-type address
+$ bitcoin-tool --input-file <(echo "my tag" | openssl sha256 -binary) \
+               --input-type private-key \
+               --input-format raw \
+               --network bitcoin \
+               --output-format base58check \
+               --output-type address \
                --public-key-compression compressed
-               --input $(echo "my tag" | openssl sha256 | tail -c 65)
 194aYsKYk7nF8Lf7Dak4vQaDg85wqPDy1g
 \end{verbatim}
 

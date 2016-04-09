@@ -18,9 +18,9 @@ This paper proposes a tagging mechanism, Pay-to-TagAddress (P2TA), that allows e
 \end{abstract}
 
 \section{Introduction}
-Blockchains, as first introduced by the Bitcoin~\cite{Nak09} network, are used increasingly for non-currency applications.
-Examples of non-currency usage includes Colored Coins~\cite{Ros12}, PeerMessage~\cite{Emeth}, PSA~\cite{Pchem} and multiple others.
-These applications typically publish there own specific messages in the form of OP\_RETURN transactions on a third-party blockchain.
+Blockchains, as first introduced by the Bitcoin~\cite{Nak08} network, are used increasingly by third-party applications.
+Examples of third-party usage includes Colored Coins~\cite{Ros12}, PeerMessage~\cite{Emeth}, PSA~\cite{Pchem} and multiple others.
+These applications typically publish there own specific messages in the form of OP\_RETURN transaction outputs on a third-party blockchain.
 Scanning an entire blockchain for messages of a specific form becomes increasingly expensive while the blockchain grows.
 Applications like PeerMessage~\cite{Emeth} only rely on real-time transactions being relayed by the network and therefore do not suffer from blockchain growth.
 However, applications like PSA~\cite{Pchem} need know an entire history of asset specific transactions to be able to validate asset ownership.
@@ -39,7 +39,7 @@ To generate secure addresses it is recommended to use a strong random number as 
 However, as long as little or no funds are transferred to an address, there is no need for the address to be secure to teft.
 Therefore private keys obtained by hashing a publicly known string can generate what we call a deterministic tagged address.
 
-As an example, the command below demonstrates how a tagged address for tag ``my tag'' on the bitcoin network can be created using ``bitcoin-tool'' \_ref\_bitcoin-tool.
+As an example, the command below demonstrates how a tagged address for tag ``my tag'' on the bitcoin network can be created using bitcoin-tool~\cite{Matja}.
 \begin{verbatim}
 $ bitcoin-tool --input-type private-key
                --input-format hex
@@ -79,26 +79,33 @@ Efficiently finding transactions tagged by a known tag is done as follows:
 
 \begin{thebibliography}{9}
 
+\bibitem{Nak08}
+  S. Nakamoto,
+  \emph{Bitcoin: A Peer-to-Peer Electronic Cash System},
+  \url{https://bitcoin.org/bitcoin.pdf},
+  2008.
+
 \bibitem{Ros12}
-  Meni Rosenfeld,
+  M. Rosenfeld,
   \emph{Overview of Colored Coins},
-  December 4, 2012,
-  \url{https://bitcoil.co.il/BitcoinX.pdf}
+  \url{https://bitcoil.co.il/BitcoinX.pdf},
+  2012.
 
 \bibitem{Emeth}
   Emeth,
   \emph{PeerMessage},
-  \url{https://github.com/Peerapps/Peerapps/tree/master/peermessage}
+  \url{https://github.com/Peerapps/Peerapps/tree/master/peermessage}.
 
 \bibitem{Pchem}
   Peerchemist,
   \emph{PSA – Peercoin simple assets},
-  \url{https://mega.nz/#!GIdGwSjC!k9aLkRbXdx8Si0F3skdHy16D2T_GDaO8Evnedo5cYUA}
+  \url{https://mega.nz/#!GIdGwSjC!k9aLkRbXdx8Si0F3skdHy16D2T_GDaO8Evnedo5cYUA},
+  2016.
 
-\bibitem{Nak09}
-  Satoshi Nakamoto,
-  \emph{Bitcoin: A Peer-to-Peer Electronic Cash System},
-  \url{https://bitcoin.org/bitcoin.pdf}
+\bibitem{Matja}
+  Matja,
+  \emph{bitcoin-tool},
+  \url{https://github.com/matja/bitcoin-tool}.
 
 \end{thebibliography}
 

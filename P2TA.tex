@@ -14,7 +14,7 @@
 Multiple applications are using existing blockchains as a communication network.
 Most of these implementations are scanning to blockchain for transactions matching their own format.
 However, processing large blockchains to find application specific transactions can be expensive to execute.
-This paper proposes a tagging mechanism, Pay-to-TagAddress (P2TA), that allows efficient lookup of application specific transactions based on the addition of transactions to deterministic tagged addresses.
+This paper proposes a tagging mechanism, Pay-to-TagAddress (P2TA), that allows efficient lookup of application specific transactions based on the addition of transaction outputs to deterministic tagged addresses.
 \end{abstract}
 
 \section{Introduction}
@@ -73,6 +73,24 @@ Efficiently finding transactions tagged by a known tag is done as follows:
 
 
 \section{Use case}
+This section proposes a performance improvement to the PSA~\cite{Pchem} paper as a use case.
+Contrary to the Peershares~\cite{TODO} project that creates it's own blockchain, the PSA (Peercoin simple assets) paper proposes a way to register, distribute and trade assets using the Peercoin~\cite{TODO} blockchain.
+A naive implementation of P2TA could take the form of adding a simple ``PSA'' tag to every PSA specific message, which would greatly improve the blockchain parsing performance. However, a more advanced tagging mechanism is proposed in this section.
+
+\subsection{Deck spawning}
+The process to register a new asset on the blockchain is reffered to as ``deck spawning''. A deck is spawned by publishing a message that claims ownership over a specific amount of an asset. From that point on, only the spawning address is able to spawn more of the specific asset. Therefore, an efficient lookup mechanism to check if a specific asset already exists without the need to have the fully parsed PSA tree in memory, improves the client's performance considerably. Other than that, a mechanism to list all ``deck spawning'' messages is desirable to allow all clients to discover third-party asset transactions.
+
+Advantages:
+\begin{itemize}
+ \item No need to parse entire blockchain when creating a new node.
+ \item Efficient check wether an asset already exists.
+ \item Efficient lookup of asset specific messages.
+\end{itemize}
+
+Disadvantages:
+\begin{itemize}
+ \item Increased transaction size resulting in a higher ppc transaction fee.
+\end{itemize}
 
 \section{Conclusion}
 

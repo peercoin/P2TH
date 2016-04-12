@@ -18,8 +18,8 @@
 \begin{abstract}
 Multiple applications are using existing blockchains as a communication network.
 Most of these implementations are scanning to blockchain for transactions matching their own format.
-However, processing large blockchains to find application specific transactions can be expensive to execute.
-This paper proposes a tagging mechanism, Pay-to-TagAddress (P2TA), that allows efficient lookup of application specific transactions based on the addition of transaction outputs to deterministic tagged addresses.
+However, this requires a full blockchain node and processing a large blockchain to find application specific transactions can become expensive to execute.
+This paper proposes a tagging mechanism, Pay-to-TagAddress (P2TA), that allows efficient lookup of application specific transactions based on the addition of transaction outputs to deterministic tagged addresses. P2TA also allows thin clients to find application specific messages using standard functions exposed by the widely available blockchain explorers.
 \end{abstract}
 
 \doclicenseThis
@@ -28,15 +28,18 @@ This paper proposes a tagging mechanism, Pay-to-TagAddress (P2TA), that allows e
 Blockchains, as first introduced by the Bitcoin~\cite{Nak08} network, are used increasingly by third-party applications.
 Examples of third-party usage includes Colored Coins~\cite{Ros12}, PeerMessage~\cite{Emeth}, PSA~\cite{Pchem} and multiple others.
 These applications typically publish there own specific messages in the form of OP\_RETURN transaction outputs on a third-party blockchain.
+
 Scanning an entire blockchain for messages of a specific form becomes increasingly expensive while the blockchain grows.
 Applications like PeerMessage~\cite{Emeth} only rely on real-time transactions being relayed by the network and therefore do not suffer from blockchain growth.
 However, applications like PSA~\cite{Pchem} need know an entire history of asset specific transactions to be able to validate asset ownership.
 Therefore these type of applications would greatly benefit from a system that allows efficient querying of transactions holding a specific tag.
 
+Blockchain growth also increases disk and memory usage of the full nodes needed to parse the blockchain for application specific messages. For lightweight applications, downloading the entire blockchain might become unfeasable. A query mechanism to find these messages using standard lookup functions, would allow these third-party applictions to be implemented as thin clients interfacing with standard blockchain explorers like blockr.io \cite{Blockr}.
+
 \section{Blockchain queryability}
-Blockchain clients are designed to efficiently query for transactions, blocks and addresses by their hash values.
+Blockchain clients are designed to efficiently query for transactions, blocks and addresses by their ids.
 Therefore the client can be approached as if it's storing the blockchain indexed on transactions, blocks and addresses.
-Querying for non-indexed data on the blockchain can be considered inefficient and to be avoided.
+Querying for non-indexed data on the blockchain can be considered inefficient and to be avoided and might even be unfeasable using a thin client.
 For efficient queryability of application specific entities on the blockchain, a tagging mechanism based on the indexed propeties can be used.
 
 \section{Deterministic tagged address}
@@ -46,7 +49,7 @@ To generate secure addresses it is recommended to use a strong random number as 
 However, as long as little or no funds are transferred to an address, there is no need for the address to be secure to teft.
 Therefore private keys obtained by hashing a publicly known string can generate what we call a deterministic tagged address.
 
-As an example, the command below demonstrates how a tagged address for tag ``my tag'' on the bitcoin network can be created using bitcoin-tool~\cite{Matja}.
+As an example, the command below demonstrates how a tagged address for tag ``my tag'' on the bitcoin network can be created using bitcoin-tool~\cite{Matja}, which is usable for multiple blockchain networks.
 \begin{verbatim}
 $ bitcoin-tool --input-file <(echo "my tag" | openssl sha256 -binary) \
                --input-type private-key \

@@ -86,7 +86,12 @@ Efficiently finding transactions tagged by a known tag is done as follows:
 \end{itemize}
 
 
-\section{Salting tagged addresses}
+\section{Tag salting}
+Since tags are usually human readable and human generated rather than randomly generated, there is a high probability for tags not to be unique.
+Therefore, applications using P2TA should be able to cope with unrelated transactions coming in on the tagged address, and lower the client's performance.
+A reasonable technique to lower the risk on tag collisions, is adding a publicly known salt to the tag.
+This salt might be hard coded in the client application or be randomly generated and broadcasted to the public.
+It should be noted that ``tag spamming'' can never be avoided, but unintentional collisions can.
 
 
 \section{Use case}
@@ -111,7 +116,7 @@ The resulting transaction outputs for deck spawning look as follows:
 { "value":<min_value>,
   "n":1,
   "scriptPubKey":{
-    "asm":"OP_DUP OP_HASH160 <pk_hash_for_tag('PSA/my asset' + salt)>
+    "asm":"OP_DUP OP_HASH160 <pk_hash_for_tag('PSA/deck spawning' + salt_1)>
            OP_EQUALVERIFY OP_CHECKSIG",
     "type":"pubkeyhash",
     "reqSig":1 }
@@ -119,12 +124,22 @@ The resulting transaction outputs for deck spawning look as follows:
 { "value":<min_value>,
   "n":2,
   "scriptPubKey":{
-    "asm":"OP_DUP OP_HASH160 <pk_hash_for_tag('PSA/deck spawning' + salt)>
+    "asm":"OP_DUP OP_HASH160 <pk_hash_for_tag('PSA/my asset' + salt_2)>
            OP_EQUALVERIFY OP_CHECKSIG",
     "type":"pubkeyhash",
     "reqSig":1 }
 }]
 \end{verbatim}
+
+\subsection{Asset transaction}
+
+\subsection{Salting}
+Note that the deck spawing transaction uses a different salt for both tags.
+Using a different salt for the ``PSA/my asset'' tag allows the creation of multiple assets with the same name but with a different tag.
+
+The deck spawning salt can be hard coded in the client application, making sure that all clients can easily query all ``deck spawning'' transactions.
+
+The asset specific salt is randomly generated and can be communicated to assed holders directly, through the OP\_RETURN message or could even be brute forced if the asset name is known and the salt has a limited size.
 
 
 

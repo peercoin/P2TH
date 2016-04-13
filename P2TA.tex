@@ -101,10 +101,10 @@ A naive implementation of P2TA could take the form of adding a simple ``PSA'' ta
 However, a slightly more advanced tagging mechanism is proposed in this section.
 
 \subsection{Deck spawning}
-The process to register a new asset on the blockchain is reffered to as ``deck spawning''. A deck is spawned by publishing a message that claims ownership over a specific amount of an asset. From that point on, only the spawning address is able to spawn more of the specific asset. Therefore, an efficient lookup mechanism to check if a specific asset already exists without the need to have the fully parsed PSA tree in memory, improves the client's performance considerably. Other than that, a mechanism to list all ``deck spawning'' messages is desirable to allow all clients to discover third-party asset transactions.
+The process to register a new asset on the blockchain is reffered to as ``deck spawning''. A deck is spawned by publishing a message that claims ownership over a specific amount of an asset. From that point on, only the spawning address is able to spawn more of the specific asset. Therefore, an efficient lookup mechanism to check if a specific asset already exists without the need to have the fully parsed PSA tree in memory, improves the client's performance considerably. Other than that, a mechanism to list all ``deck spawning'' messages is desirable to allow all clients to discover third-party assets on the blockchain.
 
-Therefore we propose to add two tags to the transaction's outputs \verb|"PSA/my asset"+salt| and \verb|"PSA/deck spawning"+salt|.
-The resulting transaction outputs for deck spawning look as follows:
+Therefore we propose to add two tags to the transaction's outputs \verb|"PSA/deck spawning"+salt_1| and \verb|"PSA/my asset"+salt_2|.
+The resulting transaction outputs for deck spawning looks as follows:
 \begin{verbatim}
 "vout":[
 { "value":0,
@@ -132,14 +132,36 @@ The resulting transaction outputs for deck spawning look as follows:
 \end{verbatim}
 
 \subsection{Asset transaction}
+Asset transactions can be linked to their deck spawning transaction by walking up the transaction chain until the deck spawing transaction is reached.
+However, walking this chain is not trivial in either direction as transactions can have multiple in- and outputs which may not hold asset transactions.
+Therefore tagging the transactions using the asset tag \verb|"PSA/my asset"+salt_2| allows walking the chain with fewer transaction lookups.
+
+The resulting transaction outputs for an asset transaction looks as follows:
+\begin{verbatim}
+"vout":[
+{ "value":0,
+  "n":0,
+  "scriptPubKey":{
+    "asm":"OP_RETURN <data>",
+    "type":"nulldata" }
+},
+{ "value":<min_value>,
+  "n":1,
+  "scriptPubKey":{
+    "asm":"OP_DUP OP_HASH160 <pk_hash_for_tag('PSA/my asset' + salt_2)>
+           OP_EQUALVERIFY OP_CHECKSIG",
+    "type":"pubkeyhash",
+    "reqSig":1 }
+}]
+\end{verbatim}
 
 \subsection{Salting}
-Note that the deck spawing transaction uses a different salt for both tags.
+Note that a different salt is used for both tags.
 Using a different salt for the ``PSA/my asset'' tag allows the creation of multiple assets with the same name but with a different tag.
 
 The deck spawning salt can be hard coded in the client application, making sure that all clients can easily query all ``deck spawning'' transactions.
 
-The asset specific salt is randomly generated and can be communicated to assed holders directly, through the OP\_RETURN message or could even be brute forced if the asset name is known and the salt has a limited size.
+The asset specific salt is randomly generated and can be communicated to assed holders directly through the OP\_RETURN message or could even be brute forced from the deck spawning transaction if the the salt is limited in size.
 
 
 

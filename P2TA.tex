@@ -61,14 +61,18 @@ $ bitcoin-tool --input-file <(echo "my tag" | openssl sha256 -binary) \
 194aYsKYk7nF8Lf7Dak4vQaDg85wqPDy1g
 \end{verbatim}
 
-\section{Tagged transaction}
+\section{Tagging transactions}
 To tag a transaction, a Pay-to-PubkeyHash output to a tagged address is added to the transaction's outputs.
 For this the transaction to be valid, the value may need to be non-zero depending on the blockchain used.
 Altough this transaction output is indistinguisable from a standard Pay-to-PubkeyHash output, we refer to these outputs as Pay-to-TagAddress or P2TA in short.
 
-As an example, the code below creates a tagged transaction using bitcoin's JSON-RPC api.
+If we define the function \verb|address_for_tag(tag)| as the procedure described in section~\ref{sec:taggedaddress}, the following bitcoin command creates a tagged transaction with tag ``my tag''.
 \begin{verbatim}
-TODO
+createrawtransaction [{ "txid": txid, "vout": n }]
+    {
+      address: amount,
+      address_for_tag(tag): minimum_amount
+    }
 \end{verbatim}
 
 
@@ -88,7 +92,8 @@ Efficiently finding transactions tagged by a known tag is done as follows:
 \section{Use case}
 This section proposes a performance improvement to the PSA~\cite{Pchem} paper as a use case.
 Contrary to the Peershares~\cite{TODO} project that creates it's own blockchain, the PSA (Peercoin simple assets) paper proposes a way to register, distribute and trade assets using the Peercoin~\cite{TODO} blockchain.
-A naive implementation of P2TA could take the form of adding a simple ``PSA'' tag to every PSA specific message, which would greatly improve the blockchain parsing performance. However, a more advanced tagging mechanism is proposed in this section.
+A naive implementation of P2TA could take the form of adding a simple ``PSA'' tag to every PSA specific message, which could already improve the blockchain parsing performance.
+However, a slightly more advanced tagging mechanism is proposed in this section.
 
 \subsection{Deck spawning}
 The process to register a new asset on the blockchain is reffered to as ``deck spawning''. A deck is spawned by publishing a message that claims ownership over a specific amount of an asset. From that point on, only the spawning address is able to spawn more of the specific asset. Therefore, an efficient lookup mechanism to check if a specific asset already exists without the need to have the fully parsed PSA tree in memory, improves the client's performance considerably. Other than that, a mechanism to list all ``deck spawning'' messages is desirable to allow all clients to discover third-party asset transactions.

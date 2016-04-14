@@ -135,20 +135,14 @@ The deck spawning salt can be hard coded in the client application, making sure 
 The asset specific salt is randomly generated and can be communicated to assed holders directly through the OP\_RETURN message or could even be brute forced from the deck spawning transaction if the the salt is limited in size.
 
 
-
-Advantages:
-\begin{itemize}
- \item No need to parse entire blockchain when creating a new node.
- \item Efficient check wether an asset already exists.
- \item Efficient lookup of asset specific messages.
-\end{itemize}
-
-Disadvantages:
-\begin{itemize}
- \item Increased transaction size resulting in a higher ppc transaction fee.
-\end{itemize}
-
 \section{Conclusion}
+Tagging transactions allows thin clients for blockchain applications that rely on historical data.
+This is accomplished by using only standard lookup functions for addresses and tags.
+The tag address creation based on generating the private key from a publicly known salt results in insecure addresses.
+However, tag addresses should only be sent the minimal amount and therefore a secure address in not needed for this purpose.
+An alternative could be to generate the public key or address based on the salt.
+Or an address could be generated from a secret tag while only communicating the tag address itself.
+By not sending funds to an unspendable address, the funds will be redeemed by anyone knowing or guessing the tag and salt, leaving the blockchain some extra puzzles~\cite{TODO}.
 
 
 \begin{thebibliography}{9}

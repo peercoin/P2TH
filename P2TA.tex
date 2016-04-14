@@ -98,7 +98,7 @@ It should be noted that ``tag spamming'' can never be avoided, but unintentional
 
 \section{Use case: Peercoin Simple Assets (PSA)}
 This section proposes a performance improvement to the PSA~\cite{Pchem} paper as a use case.
-Contrary to the Peershares~\cite{TODO} project that creates it's own blockchain, the PSA (Peercoin simple assets) paper proposes a way to register, distribute and trade assets on the Peercoin~\cite{TODO} blockchain.
+Contrary to the Peershares~\cite{Lee13} project that creates it's own blockchain, the PSA (Peercoin simple assets) paper proposes a way to register, distribute and trade assets on the Peercoin~\cite{King12} blockchain.
 A naive implementation of P2TA could take the form of adding a simple ``PSA'' tag to every PSA specific message, which would allow a thin client to parse only the application specific messages.
 However, a slightly more advanced tagging mechanism is proposed in this section.
 
@@ -142,7 +142,7 @@ The tag address creation based on generating the private key from a publicly kno
 However, tag addresses should only be sent the minimal amount and therefore a secure address in not needed for this purpose.
 An alternative could be to generate the public key or address based on the salt.
 Or an address could be generated from a secret tag while only communicating the tag address itself.
-By not sending funds to an unspendable address, the funds will be redeemed by anyone knowing or guessing the tag and salt, leaving the blockchain some extra puzzles~\cite{TODO}.
+By not sending funds to an unspendable address, the funds will be redeemed by anyone knowing or guessing the tag and salt, leaving the blockchain some extra puzzles.
 
 
 \begin{thebibliography}{9}
@@ -153,11 +153,23 @@ By not sending funds to an unspendable address, the funds will be redeemed by an
   \url{https://bitcoin.org/bitcoin.pdf},
   2008.
 
+\bibitem{King12}
+  S. King, S. Nadal,
+  \emph{PPCoin: Peer-to-Peer Crypto-Currency with Proof-of-Stake},
+  \url{https://peercoin.net/whitepaper},
+  2012.
+
 \bibitem{Ros12}
   M. Rosenfeld,
   \emph{Overview of Colored Coins},
   \url{https://bitcoil.co.il/BitcoinX.pdf},
   2012.
+
+\bibitem{Lee13}
+  J. Lee,
+  \emph{Peershares whitepaper},
+  \url{https://wiki.peercointalk.org/index.php?title=Peershares_whitepaper},
+  2013.
 
 \bibitem{Emeth}
   Emeth,
@@ -174,6 +186,10 @@ By not sending funds to an unspendable address, the funds will be redeemed by an
   Matja,
   \emph{bitcoin-tool},
   \url{https://github.com/matja/bitcoin-tool}.
+
+\bibitem{Blockr}
+  \emph{Blockr},
+  \url{http://blockr.io}.
 
 \end{thebibliography}
 

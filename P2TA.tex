@@ -34,17 +34,17 @@ Applications like PeerMessage~\cite{Emeth} only rely on real-time transactions b
 However, applications like PeerAssets~\cite{Pchem} need know an entire history of asset specific transactions to be able to validate asset ownership.
 Therefore these type of applications would greatly benefit from a system that allows efficient querying of transactions holding a specific tag.
 
-Blockchain growth also increases disk and memory usage of the full nodes needed to parse the blockchain for application specific messages. For lightweight applications, downloading the entire blockchain might become unfeasable. A query mechanism to find these messages using standard lookup functions, would allow these third-party applictions to be implemented as thin clients interfacing with standard blockchain explorers like blockr.io \cite{Blockr}.
+Blockchain growth also increases disk and memory usage of the full nodes needed to parse the blockchain for application specific messages. For lightweight applications, downloading the entire blockchain might become infeasible. A query mechanism to find these messages using standard lookup functions, would allow these third-party applications to be implemented as thin clients interfacing with standard blockchain explorers like blockr.io \cite{Blockr}.
 
 \section{Blockchain queryability}
 Blockchain clients are designed to efficiently query for transactions, blocks and addresses by their ids.
 Therefore the client can be approached as if it's storing the blockchain indexed on transactions, blocks and addresses.
-Querying for non-indexed data on the blockchain can be considered inefficient and to be avoided and might even be unfeasable using a thin client.
-For efficient queryability of application specific transactions on the blockchain, a tagging mechanism based on the indexed propeties can be used.
+Querying for non-indexed data on the blockchain can be considered inefficient and to be avoided and might even be infeasible using a thin client.
+For efficient queryability of application specific transactions on the blockchain, a tagging mechanism based on the indexed properties can be used.
 
 \section{Deterministic tagged address}
 \label{sec:taggedaddress}
-Blockchain addresses are typically created by hashing the public key of a public/private keypair.
+Blockchain addresses are typically created by hashing the public key of a public/private key pair.
 To generate secure addresses it is recommended to use a strong random number as a private key.
 However, as long as little or no funds are transferred to an address, there is no need for the address to be secure to theft.
 Therefore private keys obtained by hashing a publicly known string can generate what we call a deterministic tagged address.
@@ -64,7 +64,7 @@ $ bitcoin-tool --input-file <(echo "my tag" | openssl sha256 -binary) \
 \section{Tagging transactions}
 To tag a transaction, a Pay-to-PubkeyHash output to a tagged address is added to the transaction's outputs.
 For the output to be valid, it's value may need to be non-zero depending on the blockchain used.
-Altough this transaction output is indistinguisable from a standard Pay-to-PubkeyHash output, we refer to these outputs as Pay-to-TagAddress or P2TA in short.
+Although this transaction output is indistinguishable from a standard Pay-to-PubkeyHash output, we refer to these outputs as Pay-to-TagAddress or P2TA in short.
 
 If we define the function \verb|address_for_tag(tag)| as the procedure described in section~\ref{sec:taggedaddress}, the following bitcoin command creates a tagged transaction with tag ``my tag''.
 \begin{verbatim}
@@ -92,18 +92,18 @@ Tags are usually human readable and human generated rather than randomly generat
 There is a high probability for tags not to be unique.
 Therefore, applications using P2TA should be able to cope with unrelated transactions coming in on the tagged address, and lower the client's performance.
 A reasonable technique to lower the risk on tag collisions, is adding a publicly known salt to the tag.
-This salt might be hard coded in the client application or be randomly generated and broadcasted to the public.
+This salt might be hard coded in the client application or be randomly generated and broadcast to the public.
 It should be noted that ``tag spamming'' can never be avoided, but unintentional collisions can.
 
 
 \section{Use case: PeerAssets}
 This section proposes a performance improvement to the PeerAssets~\cite{Pchem} paper as a use case.
-Contrary to the Peershares~\cite{Lee13} project that creates it's own blockchain, the PeerAssets paper proposes a way to register, distribute and trade assets on the Peercoin~\cite{King12} blockchain.
+Contrary to the Peershare~\cite{Lee13} project that creates it's own blockchain, the PeerAssets paper proposes a way to register, distribute and trade assets on the Peercoin~\cite{King12} blockchain.
 A naive implementation of P2TA could take the form of adding a simple ``PeerAssets'' tag to every PeerAssets specific transaction, which would allow a thin client to parse only the application specific transactions.
 However, a slightly more advanced tagging mechanism is proposed in this section.
 
 \subsection{Deck spawning}
-The process to register a new asset on the blockchain is reffered to as ``deck spawning''. A deck is spawned by publishing a message that claims ownership over a specific amount of an asset. From that point on, only the spawning address is able to spawn more of the specific asset. Therefore, an efficient lookup mechanism to check if a specific asset already exists without the need to have the fully parsed PeerAssets tree in memory, improves the client's performance considerably. Other than that, a mechanism to list all ``deck spawning'' messages is desirable to allow all clients to discover third-party assets on the blockchain.
+The process to register a new asset on the blockchain is referred to as ``deck spawning''. A deck is spawned by publishing a message that claims ownership over a specific amount of an asset. From that point on, only the spawning address is able to spawn more of the specific asset. Therefore, an efficient lookup mechanism to check if a specific asset already exists without the need to have the fully parsed PeerAssets tree in memory, improves the client's performance considerably. Other than that, a mechanism to list all ``deck spawning'' messages is desirable to allow all clients to discover third-party assets on the blockchain.
 
 Two tags are added to the transaction's outputs \verb|"PeerAssets/deck spawning"+salt_1| and \verb|"PeerAssets/my asset"+salt_2|.
 The resulting transaction outputs for deck spawning look as follows:
@@ -115,7 +115,7 @@ OP_DUP OP_HASH160 <pk_hash_for_tag('PeerAssets/my asset' + salt_2)> OP_EQUALVERI
 \end{verbatim}\end{small}
 
 \subsection{Asset transaction}
-Asset transactions can be linked to their deck spawning transaction by walking up the transaction chain until the deck spawing transaction is reached.
+Asset transactions can be linked to their deck spawning transaction by walking up the transaction chain until the deck spawning transaction is reached.
 However, walking this chain is not trivial in either direction as transactions can have multiple in- and outputs which may not hold asset transactions.
 Therefore tagging the transactions using the asset tag \verb|"PeerAssets/my asset"+salt_2| allows walking the chain with fewer transaction lookups.
 
@@ -132,7 +132,7 @@ Using a different salt for the ``PeerAssets/my asset'' tag allows the creation o
 
 The deck spawning salt, or even the generated tagged address, can be hard coded in the client application making sure that all clients can easily query all ``deck spawning'' transactions.
 
-The asset specific salt is randomly generated and can be communicated to assed holders directly through the OP\_RETURN message or could even be brute forced from the deck spawning transaction if the the salt is limited in size.
+The asset specific salt is randomly generated and can be communicated to asset holders directly through the OP\_RETURN message or could even be brute forced from the deck spawning transaction if the the salt is limited in size.
 
 
 \section{Conclusion}
@@ -179,7 +179,7 @@ By not sending funds to an unspendable address, they can be redeemed by anyone k
 \bibitem{Pchem}
   Peerchemist,
   \emph{PeerAssets – Peercoin simple assets},
-  \url{https://mega.nz/#!GIdGwSjC!k9aLkRbXdx8Si0F3skdHy16D2T_GDaO8Evnedo5cYUA},
+  \url{http://peerbox.me/psa/PSA.pdf},
   2016.
 
 \bibitem{Matja}

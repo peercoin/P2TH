@@ -93,7 +93,52 @@ There is a high probability for tags not to be unique.
 Therefore, applications using P2TA should be able to cope with unrelated transactions coming in on the tagged address, and lower the client's performance.
 A reasonable technique to lower the risk on tag collisions, is adding a publicly known salt to the tag.
 This salt might be hard coded in the client application or be randomly generated and broadcast to the public.
-It should be noted that ``tag spamming'' can never be avoided, but unintentional collisions can.
+It should be noted that salting cannot mitigate intentional ``tag spamming'', but it mitigates unintentional collisions.
+
+
+\section{Tag spamming}
+P2TA applications can be attacked by spamming their tag addresses.
+Tag spamming can reduce the applications performance significantly by increasing the amount of required transaction lookups.
+In extreme cases it could even result in a full denial of service (DoS attack).
+This section proposes counter measures to ``tag spamming''.
+
+\subsection{Sent address black-listing}
+While parsing the tagged transactions, addresses sending many application unrelated messages to the tagged address can be blacklisted.
+The P2TA application can then ignore all transactions originating from the blacklisted addresses.
+This counter measure is quite naive, as spammers can easily use a different address for every spam message.
+It might also happen that legitimate addresses get blacklisted therefore compromise the proper functioning of the application.
+
+\subsection{Proof-of-Burn}
+An application can require the P2TA output to burn a specific amount,
+which would make it costly for attackers to execute a DoS attack.
+Spam transactions would still show up in the incoming transaction lookup for the tagged address,
+but the client can ignore all transactions below the threshold amount.
+Proof-of-Burn requires the P2TA output to be unspendable, meaning that the private key should not be recoverable from the tag and salt.
+Therefore a different address generation procedure is required for a Proof-of-Burn protected implementation.
+We propose to generate the public key as the hash of the tag + salt.
+
+Using bitcoin-tool on the bitcoin network this looks as follows:
+\begin{small}\begin{verbatim}
+$ bitcoin-tool --input-file <(echo "tag and salt" | openssl sha256 -binary) \
+               --input-type public-key-sha \
+               --input-format raw \
+               --network bitcoin \
+               --output-format base58check \
+               --output-type address \
+               --public-key-compression compressed
+12w3JJ84RXmJUZTgafJJ91vvLg8oU5djUG
+\end{verbatim}\end{small}
+
+Note that the Peercoin~\cite{King12} implements a Proof-of-Burn mechanism by requiring a transaction fee of 0.01PPC per kb transaction size.
+However, this fee might still be too low to effectively prevent ``tag spamming''.
+
+\subsection{Spam filtered blockchain explorer}
+A standard blockchain explorer API can return all transactions on a specific address.
+This functionality is used to discover all transactions related to a specific tag.
+Applications can decide to expose a similar web service method that only returns valid application specific transactions.
+This centralises spam filtering and therefore increases the thin client's performance.
+It should be noted that this introduces a single point of failure.
+Therefore it is recommended to implement fallback service calls using third-party unfiltered blockchain explorers.
 
 
 \section{Use case: PeerAssets}
@@ -139,7 +184,7 @@ Tagging transactions allows the creation of thin clients for blockchain applicat
 This is accomplished by using only standard lookup functions for addresses and transactions.
 Tag address creation based on generating the private key from a publicly known salt results in insecure addresses.
 However, tag addresses should only be sent the minimal amount and therefore a secure address in not needed for this purpose.
-An alternative could be to generate the public key or address based on the tag and salt, which would make funds sent to it practically unspendable.
+An alternative could be to generate the public key or address based on the tag and salt. This would make funds sent to it practically unspendable, and can act as a Proof-of-Burn mechanism to prevent ``tag spamming''.
 Or an address can be generated from a secret tag while only communicating the tagged address itself, which would make the funds only spendable by the creator if a secure salt is chosen.
 By not sending funds to an unspendable address, they can be redeemed by anyone knowing or guessing the tag and salt, leaving the blockchain some extra puzzles.
 

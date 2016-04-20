@@ -140,8 +140,8 @@ This centralises spam filtering and therefore increases the thin client's perfor
 It should be noted that this introduces a single point of failure.
 Therefore it is recommended to implement fallback service calls using third-party unfiltered blockchain explorers.
 
-\subsection{Deterministic hierarchical wallets}
-BIP32~\cite{TODO} proposes a mechanism to generate a fully deterministic tree tree of private or public keys based on a single seed.
+\subsection{Hierarchical deterministic wallets}
+BIP32~\cite{Wui12} proposes a mechanism to generate a fully deterministic tree tree of private or public keys based on a single seed.
 The tag and salt can be used as the seed to generate such a tree.
 Applications that model their messages as a chain of transactions can use such a tree to map it's messages on.
 Finding all transactions with a single tag, becomes considerably more expensive than for a single tag address as it requires an extra address lookup for every application message.
@@ -214,6 +214,12 @@ By not sending funds to an unspendable address, they can be redeemed by anyone k
   M. Rosenfeld,
   \emph{Overview of Colored Coins},
   \url{https://bitcoil.co.il/BitcoinX.pdf},
+  2012.
+
+\bibitem{Wui12}
+  P. Wuille,
+  \emph{Hierarchical Deterministic Wallets},
+  \url{https://en.bitcoin.it/wiki/BIP_0032},
   2012.
 
 \bibitem{Lee13}

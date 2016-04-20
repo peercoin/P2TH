@@ -140,6 +140,13 @@ This centralises spam filtering and therefore increases the thin client's perfor
 It should be noted that this introduces a single point of failure.
 Therefore it is recommended to implement fallback service calls using third-party unfiltered blockchain explorers.
 
+\subsection{Deterministic hierarchical wallets}
+BIP32~\cite{TODO} proposes a mechanism to generate a fully deterministic tree tree of private or public keys based on a single seed.
+The tag and salt can be used as the seed to generate such a tree.
+Applications that model their transactions as a chain of transactions can use such a tree to map it's transactions on.
+Therefore Finding all transactions for a single tag, becomes considerably more expensive than for a single tag address, as it requires an extra address lookup for every transaction.
+However, since every transaction has a unique tag address, attacking the entire application becomes practically infeasible.
+
 
 \section{Use case: PeerAssets}
 This section proposes a performance improvement to the PeerAssets~\cite{Pchem} paper as a use case.

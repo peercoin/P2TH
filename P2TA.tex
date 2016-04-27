@@ -51,7 +51,7 @@ Therefore private keys obtained by hashing a publicly known string can generate 
 
 As an example, the command below demonstrates how a tagged address for tag ``my tag'' on the bitcoin network can be created using bitcoin-tool~\cite{Matja}, that can be used for different blockchain networks.
 
-\begin{small}\begin{verbatim}
+\begin{scriptsize}\begin{verbatim}
 $ bitcoin-tool --input-file <(echo "my tag" | openssl sha256 -binary) \
                --input-type private-key \
                --input-format raw \
@@ -60,7 +60,7 @@ $ bitcoin-tool --input-file <(echo "my tag" | openssl sha256 -binary) \
                --output-type address \
                --public-key-compression compressed
 194aYsKYk7nF8Lf7Dak4vQaDg85wqPDy1g
-\end{verbatim}\end{small}
+\end{verbatim}\end{scriptsize}
 
 \section{Tagging transactions}
 To tag a transaction, a Pay-to-PubkeyHash output to a tagged address is added to the transaction's outputs.
@@ -69,14 +69,14 @@ Although this transaction output is indistinguishable from a standard Pay-to-Pub
 
 If we define the function \verb|address_for_tag(tag)| as the procedure described in section~\ref{sec:taggedaddress}, the following bitcoin command creates a tagged transaction with tag ``my tag''.
 
-\begin{small}\begin{verbatim}
+\begin{scriptsize}\begin{verbatim}
 createrawtransaction [{ "txid": txid, "vout": n }]
     {
       address: amount,
       change_address: change_amount,
       address_for_tag("my tag"): minimum_amount
     }
-\end{verbatim}\end{small}
+\end{verbatim}\end{scriptsize}
 
 Note that most networks implement dust spamming counter measures which are triggered the by low output amount of the tag output.
 Make sure to check with the involved communities if these transactions are acceptable on their network.
@@ -124,7 +124,7 @@ Instead of generating the private key, we propose to generate the public key as 
 
 Using bitcoin-tool on the bitcoin network this looks as follows:
 
-\begin{small}\begin{verbatim}
+\begin{scriptsize}\begin{verbatim}
 $ bitcoin-tool --input-file <(echo "tag and salt" | openssl sha256 -binary) \
                --input-type public-key-sha \
                --input-format raw \
@@ -133,7 +133,7 @@ $ bitcoin-tool --input-file <(echo "tag and salt" | openssl sha256 -binary) \
                --output-type address \
                --public-key-compression compressed
 12w3JJ84RXmJUZTgafJJ91vvLg8oU5djUG
-\end{verbatim}\end{small}
+\end{verbatim}\end{scriptsize}
 
 Note that the Peercoin~\cite{King12} implements a Proof-of-Burn mechanism by requiring a transaction fee of 0.01PPC per kb transaction size.
 However, this fee might still be too low to effectively prevent ``tag spamming''.

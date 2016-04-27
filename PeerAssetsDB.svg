@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="133.54697mm"
+   height="119.13027mm"
+   viewBox="0 0 473.19791 422.11513"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="PeerAssetsDB.svg"
+   inkscape:export-filename="/home/hans/development/crypto/p2ta_paper/PeerAssetsDB.png"
+   inkscape:export-xdpi="245.05701"
+   inkscape:export-ydpi="245.05701">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.2934859"
+     inkscape:cx="235.01102"
+     inkscape:cy="206.55064"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1366"
+     inkscape:window-height="732"
+     inkscape:window-x="0"
+     inkscape:window-y="17"
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-50.351612,-51.834933)">
+    <g
+       id="g4619"
+       transform="translate(0,-6.6835905)">
+      <flowRoot
+         transform="translate(97.77129,-210.70155)"
+         style="font-style:normal;font-weight:normal;font-size:12.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         id="flowRoot4140"
+         xml:space="preserve"
+         inkscape:export-xdpi="245.05701"
+         inkscape:export-ydpi="245.05701"><flowRegion
+           id="flowRegion4142"><rect
+             y="276.02911"
+             x="89.914284"
+             height="125.00279"
+             width="171.05646"
+             id="rect4144" /></flowRegion><flowPara
+           id="flowPara4146"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;font-family:monospace;-inkscape-font-specification:monospace">Deck spawn txn</flowPara><flowPara
+           id="flowPara4148"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;font-family:monospace;-inkscape-font-specification:monospace" /><flowPara
+           id="flowPara4150"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;font-family:monospace;-inkscape-font-specification:monospace">create_txn_id      (txid)</flowPara><flowPara
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;font-family:monospace;-inkscape-font-specification:monospace"
+           id="flowPara4713">create_addr      (vin[0])</flowPara><flowPara
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;font-family:monospace;-inkscape-font-specification:monospace"
+           id="flowPara4715">spawn_tag_addr     (P2TA)</flowPara><flowPara
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;font-family:monospace;-inkscape-font-specification:monospace"
+           id="flowPara4605">asset_name    (OP_RETURN)</flowPara></flowRoot>      <g
+         transform="matrix(0.99981769,0,0,1.0691198,-23.945786,-4.0636232)"
+         id="g4374">
+        <rect
+           style="opacity:0.99299999;fill:none;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           id="rect4136"
+           width="185.88213"
+           height="94.884285"
+           x="204.42865"
+           y="59.03614" />
+        <path
+           style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 204.55822,86.70962 185.31115,0"
+           id="path4156"
+           inkscape:connector-curvature="0" />
+      </g>
+    </g>
+    <g
+       id="g4592">
+      <rect
+         y="362.6622"
+         x="50.837482"
+         height="110.80201"
+         width="217.05583"
+         id="rect4136-8"
+         style="opacity:0.99299999;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.97174054;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <flowRoot
+         transform="translate(-28.233024,92.85471)"
+         style="font-style:normal;font-weight:normal;font-size:12.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         id="flowRoot4140-3"
+         xml:space="preserve"><flowRegion
+           id="flowRegion4142-3"><rect
+             y="276.02911"
+             x="89.914284"
+             height="125.00281"
+             width="200.72166"
+             id="rect4144-3" /></flowRegion><flowPara
+           id="flowPara4146-2"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;font-family:monospace;-inkscape-font-specification:monospace">Card transfer txn</flowPara><flowPara
+           id="flowPara4148-0"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;font-family:monospace;-inkscape-font-specification:monospace" /><flowPara
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;font-family:monospace;-inkscape-font-specification:monospace"
+           id="flowPara4724">from_addr            (vin[0])</flowPara><flowPara
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;font-family:monospace;-inkscape-font-specification:monospace"
+           id="flowPara4732">to_addr               (P2PKH)</flowPara><flowPara
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;font-family:monospace;-inkscape-font-specification:monospace"
+           id="flowPara4730">create_tag_addr        (P2TA)</flowPara><flowPara
+           id="flowPara4253"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;font-family:monospace;-inkscape-font-specification:monospace">transfer_amount   (OP_RETURN)</flowPara></flowRoot>      <path
+         inkscape:connector-curvature="0"
+         id="path4156-1"
+         d="m 50.949571,390.28402 216.467389,0"
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.08044767px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    </g>
+    <g
+       id="g4353">
+      <flowRoot
+         transform="translate(121.24148,-55.238681)"
+         style="font-style:normal;font-weight:normal;font-size:12.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         id="flowRoot4140-3-1"
+         xml:space="preserve"><flowRegion
+           id="flowRegion4142-3-0"><rect
+             y="276.02911"
+             x="89.914284"
+             height="125.00279"
+             width="171.05646"
+             id="rect4144-3-7" /></flowRegion><flowPara
+           id="flowPara4146-2-0"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;font-family:monospace;-inkscape-font-specification:monospace">fnc_tag_address</flowPara><flowPara
+           id="flowPara4148-0-9"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;font-family:monospace;-inkscape-font-specification:monospace" /><flowPara
+           id="flowPara4152-5-1"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;font-family:monospace;-inkscape-font-specification:monospace">create_txn_id</flowPara><flowPara
+           id="flowPara4253-4"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;font-family:monospace;-inkscape-font-specification:monospace">create_tag_address</flowPara></flowRoot>      <rect
+         ry="4.8117394"
+         y="214.39687"
+         x="203.79674"
+         height="79.532173"
+         width="139.4173"
+         id="rect4136-8-0"
+         style="opacity:0.99299999;fill:none;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path4156-1-4"
+         d="m 203.95003,242.13246 138.877,0"
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 153.27034,361.82163 0,-39.55364 93.11586,0 0,-28.84119"
+       id="path4442"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 415.31319,362.33092 0,-38.52703 -102.18023,0 0,-30.37709"
+       id="path4444"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 271.10722,213.49549 0,-60.15449"
+       id="path4446"
+       inkscape:connector-curvature="0" />
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4448"
+       style="font-style:normal;font-weight:normal;font-size:12.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       transform="translate(30,2)"><flowRegion
+         id="flowRegion4450"><rect
+           id="rect4452"
+           width="20.600853"
+           height="24.721024"
+           x="247.21024"
+           y="156.63713" /></flowRegion><flowPara
+         id="flowPara4454"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace">1</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4448-2"
+       style="font-style:normal;font-weight:normal;font-size:12.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       transform="translate(30.170489,37.419204)"><flowRegion
+         id="flowRegion4450-8"><rect
+           id="rect4452-6"
+           width="20.600853"
+           height="24.721024"
+           x="247.21024"
+           y="156.63713" /></flowRegion><flowPara
+         id="flowPara4454-9"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace">1</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4448-3"
+       style="font-style:normal;font-weight:normal;font-size:12.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       transform="translate(3.8013981,141.7196)"><flowRegion
+         id="flowRegion4450-82"><rect
+           id="rect4452-2"
+           width="20.600853"
+           height="24.721024"
+           x="247.21024"
+           y="156.63713" /></flowRegion><flowPara
+         id="flowPara4454-2"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace">1</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4448-7"
+       style="font-style:normal;font-weight:normal;font-size:12.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       transform="translate(72.196228,142.42347)"><flowRegion
+         id="flowRegion4450-821"><rect
+           id="rect4452-3"
+           width="20.600853"
+           height="24.721024"
+           x="247.21024"
+           y="156.63713" /></flowRegion><flowPara
+         id="flowPara4454-1"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace">1</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4448-1"
+       style="font-style:normal;font-weight:normal;font-size:12.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       transform="translate(-88.370251,185.27324)"><flowRegion
+         id="flowRegion4450-824"><rect
+           id="rect4452-5"
+           width="20.600853"
+           height="24.721024"
+           x="247.21024"
+           y="156.63713" /></flowRegion><flowPara
+         id="flowPara4454-27"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace">n</flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4448-1-5"
+       style="font-style:normal;font-weight:normal;font-size:12.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       transform="translate(173.99286,184.57784)"><flowRegion
+         id="flowRegion4450-824-1"><rect
+           id="rect4452-5-9"
+           width="20.600853"
+           height="24.721024"
+           x="247.21024"
+           y="156.63713" /></flowRegion><flowPara
+         id="flowPara4454-27-6"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:monospace;-inkscape-font-specification:monospace">n</flowPara></flowRoot>    <g
+       id="g4695">
+      <g
+         id="g4592-0"
+         transform="translate(255.17033,-0.41993204)">
+        <rect
+           style="opacity:0.99299999;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.97174054;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           id="rect4136-8-06"
+           width="217.05583"
+           height="110.80201"
+           x="50.837482"
+           y="362.6622" />
+        <flowRoot
+           xml:space="preserve"
+           id="flowRoot4140-3-2"
+           style="font-style:normal;font-weight:normal;font-size:12.5px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           transform="translate(-28.233024,92.85471)"><flowRegion
+             id="flowRegion4142-3-6"><rect
+               id="rect4144-3-4"
+               width="200.72166"
+               height="125.00281"
+               x="89.914284"
+               y="276.02911" /></flowRegion><flowPara
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;font-family:monospace;-inkscape-font-specification:monospace"
+             id="flowPara4146-2-6">Card issue txn</flowPara><flowPara
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;font-family:monospace;-inkscape-font-specification:monospace"
+             id="flowPara4148-0-7" /><flowPara
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;font-family:monospace;-inkscape-font-specification:monospace"
+             id="flowPara4152-5-4">create_addr          (vin[0])</flowPara><flowPara
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;font-family:monospace;-inkscape-font-specification:monospace"
+             id="flowPara4740">to_addr               (P2PKH)</flowPara><flowPara
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;font-family:monospace;-inkscape-font-specification:monospace"
+             id="flowPara4738">create_tag_addr        (P2TA)</flowPara><flowPara
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;font-family:monospace;-inkscape-font-specification:monospace"
+             id="flowPara4253-9">transfer_amount   (OP_RETURN)</flowPara></flowRoot>        <path
+           style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.08044767px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 50.949571,390.28402 216.467389,0"
+           id="path4156-1-9"
+           inkscape:connector-curvature="0" />
+      </g>
+    </g>
+  </g>
+</svg>

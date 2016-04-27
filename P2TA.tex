@@ -50,6 +50,7 @@ However, as long as little or no funds are transferred to an address, there is n
 Therefore private keys obtained by hashing a publicly known string can generate what we call a deterministic tagged address.
 
 As an example, the command below demonstrates how a tagged address for tag ``my tag'' on the bitcoin network can be created using bitcoin-tool~\cite{Matja}, that can be used for different blockchain networks.
+
 \begin{small}\begin{verbatim}
 $ bitcoin-tool --input-file <(echo "my tag" | openssl sha256 -binary) \
                --input-type private-key \
@@ -66,7 +67,8 @@ To tag a transaction, a Pay-to-PubkeyHash output to a tagged address is added to
 For the output to be valid, it's value may need to be non-zero depending on the blockchain used.
 Although this transaction output is indistinguishable from a standard Pay-to-PubkeyHash output, we refer to these outputs as Pay-to-TagAddress or P2TA in short.
 
-If we define the function \begin{small}\verb|address_for_tag(tag)|\end{small} as the procedure described in section~\ref{sec:taggedaddress}, the following bitcoin command creates a tagged transaction with tag ``my tag''.
+If we define the function \verb|address_for_tag(tag)| as the procedure described in section~\ref{sec:taggedaddress}, the following bitcoin command creates a tagged transaction with tag ``my tag''.
+
 \begin{small}\begin{verbatim}
 createrawtransaction [{ "txid": txid, "vout": n }]
     {
@@ -75,6 +77,7 @@ createrawtransaction [{ "txid": txid, "vout": n }]
       address_for_tag("my tag"): minimum_amount
     }
 \end{verbatim}\end{small}
+
 Note that most networks implement dust spamming counter measures which are triggered the by low output amount of the tag output.
 Make sure to check with the involved communities if these transactions are acceptable on their network.
 
@@ -120,6 +123,7 @@ Therefore a different address generation procedure is required for a Proof-of-Bu
 Instead of generating the private key, we propose to generate the public key as the hash of the tag + salt.
 
 Using bitcoin-tool on the bitcoin network this looks as follows:
+
 \begin{small}\begin{verbatim}
 $ bitcoin-tool --input-file <(echo "tag and salt" | openssl sha256 -binary) \
                --input-type public-key-sha \
@@ -157,27 +161,51 @@ A naive implementation of P2TA could take the form of adding a simple ``PeerAsse
 However, a slightly more advanced tagging mechanism is proposed in this section.
 
 \subsection{Deck spawning}
-The process to register a new asset on the blockchain is referred to as ``deck spawning''. A deck is spawned by publishing a message that claims ownership over a specific amount of an asset. From that point on, only the spawning address is able to spawn more of the specific asset. Therefore, an efficient lookup mechanism to check if a specific asset already exists without the need to parse the full blockchain, improves the client's performance considerably.
-For ``deck spawning'' lookup, one P2TA output for tag \begin{small}\verb|"PeerAssets/deck spawning"+salt|\end{small}, is added to the transaction.
-The resulting transaction outputs for deck spawning look as follows:
+The process to register a new asset on the blockchain is referred to as ``deck spawning''.
+A deck is spawned by publishing a message that claims ownership over a specific asset. From that point on, only the spawning address is allowed to issue tokens of that asset.
+Therefore, an efficient lookup mechanism to check if a specific asset already exists without the need to parse all blockchain transactions, improves the client's performance considerably.
+For deck spawning lookup, one P2TA output for tag \verb|"PeerAssets/deck spawning"+salt|, is added to the transaction.
+The resulting transaction outputs for a deck spawning transaction look as follows:
+
 \begin{scriptsize}\begin{verbatim}
 OP_RETURN <data>
 OP_DUP OP_HASH160 <change_address_pk_hash> OP_EQUALVERIFY OP_CHECKSIG
 OP_DUP OP_HASH160 <pk_hash_for_tag("PeerAssets/deck spawning"+salt)> OP_EQUALVERIFY OP_CHECKSIG
 \end{verbatim}\end{scriptsize}
 
+Figure \ref{fig:txn_relations} illustrates the different transaction properties needed to create a ``Deck spawn txn''.
+The create\_txn\_id is it's default transaction id being the hash of the transaction.
+This idea will be used to link asset transactions to their deck spawning transaction.
+
+\begin{figure}[h]
+ \centering
+ \includegraphics[scale=0.6,keepaspectratio=true]{./PeerAssetsDB.pdf}
+ % PeerAssetsDB.pdf: 0x0 pixel, 300dpi, 0.00x0.00 cm, bb=
+ \caption{Transaction relations}
+ \label{fig:txn_relations}
+\end{figure}
+
 \subsection{Asset transaction}
+Two types of asset transactions are defined.
+The ``Card transfer transaction'' is a transaction to exchange an existing set of asset tokens.
+The ``Card issue transaction'' is the special case where asset tokens are created, similar to Bitcoin's~\cite{Nak08} coinbase transaction.
 Asset transactions can be linked to their deck spawning transaction by walking up the transaction chain until the deck spawning transaction is reached.
 However, walking this chain is not trivial in either direction as transactions can have multiple in- and outputs which may not hold asset transactions.
 Therefore tagging the transactions allows walking the chain with fewer transaction lookups.
-The common denominator for all asset transactions is their ``deck spawning'' transaction.
-Therefore it makes sense to tag asset transaction by the id of their ``deck spawning'' transaction.
+The common denominator for all asset transactions is their deck spawning transaction.
+Therefore it makes sense to tag asset transaction by the id of their deck spawning transaction.
 The resulting transaction outputs for an asset transaction look as follows:
+
 \begin{scriptsize}\begin{verbatim}
 OP_RETURN <data>
 OP_DUP OP_HASH160 <change_address_pk_hash> OP_EQUALVERIFY OP_CHECKSIG
 OP_DUP OP_HASH160 <pk_hash_for_tag(deck_spawn_txid)> OP_EQUALVERIFY OP_CHECKSIG
 \end{verbatim}\end{scriptsize}
+
+Figure \ref{fig:txn_relations} illustrates the one-to-many relationship between the spawning and issuing transactions.
+The procedure of generating the tag address from the create\_txn\_id is visualised through fnc\_tag\_address.
+Note that the card issue transaction only differs from the transfer transaction by it's input being the create\_addr.
+
 
 \subsection{Salting}
 Note that only the deck spawning tag is salted. The id of the deck spawn transaction is a unique identifier and therefore doesn't require salting.

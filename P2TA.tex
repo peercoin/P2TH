@@ -215,9 +215,10 @@ The deck spawning salt, or even the generated tagged address, can be hard coded 
 \section{Conclusion}
 Tagging transactions allows the creation of thin clients for blockchain applications that rely on historical data.
 This is accomplished by using only standard lookup functions for addresses and transactions.
-Tag address creation based on generating the private key from a publicly known salt results in insecure addresses.
+Tag address creation based on generating the private key from a publicly known seed results in insecure addresses.
 However, tag addresses should not be used for value storage and therefore a secure address in not needed for this purpose.
-An alternative could be to generate address' the public key based on the tag and salt. This would make funds sent to it practically unspendable, and can act as a Proof-of-Burn mechanism to prevent ``tag spamming''.
+An alternative could be to generate address' the public key based on the tag and salt.
+This makes funds sent to it practically unspendable, and can act as a Proof-of-Burn mechanism to prevent ``tag spamming''.
 Or a tag address can be generated from a secret tag while only communicating the tagged address itself, which would make the funds only spendable by the creator if a secure salt is chosen.
 By not sending funds to an unspendable address, they can be redeemed by anyone knowing or guessing the tag and salt, leaving the blockchain some extra puzzles.
 

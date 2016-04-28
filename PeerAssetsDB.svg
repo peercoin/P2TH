@@ -17,8 +17,8 @@
    inkscape:version="0.91 r13725"
    sodipodi:docname="PeerAssetsDB.svg"
    inkscape:export-filename="/home/hans/development/crypto/p2ta_paper/PeerAssetsDB.png"
-   inkscape:export-xdpi="245.05701"
-   inkscape:export-ydpi="245.05701">
+   inkscape:export-xdpi="114.06841"
+   inkscape:export-ydpi="114.06841">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -85,7 +85,7 @@
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;font-family:monospace;-inkscape-font-specification:monospace"
            id="flowPara4713">create_addr      (vin[0])</flowPara><flowPara
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;font-family:monospace;-inkscape-font-specification:monospace"
-           id="flowPara4715">spawn_tag_addr     (P2TA)</flowPara><flowPara
+           id="flowPara4715">spawn_tag_addr     (P2TH)</flowPara><flowPara
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;font-family:monospace;-inkscape-font-specification:monospace"
            id="flowPara4605">asset_name    (OP_RETURN)</flowPara></flowRoot>      <g
          transform="matrix(0.99981769,0,0,1.0691198,-23.945786,-4.0636232)"
@@ -133,7 +133,7 @@
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;font-family:monospace;-inkscape-font-specification:monospace"
            id="flowPara4732">to_addr               (P2PKH)</flowPara><flowPara
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;font-family:monospace;-inkscape-font-specification:monospace"
-           id="flowPara4730">create_tag_addr        (P2TA)</flowPara><flowPara
+           id="flowPara4730">create_tag_addr        (P2TH)</flowPara><flowPara
            id="flowPara4253"
            style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;font-family:monospace;-inkscape-font-specification:monospace">transfer_amount   (OP_RETURN)</flowPara></flowRoot>      <path
          inkscape:connector-curvature="0"
@@ -294,7 +294,7 @@
              style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;font-family:monospace;-inkscape-font-specification:monospace"
              id="flowPara4740">to_addr               (P2PKH)</flowPara><flowPara
              style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;font-family:monospace;-inkscape-font-specification:monospace"
-             id="flowPara4738">create_tag_addr        (P2TA)</flowPara><flowPara
+             id="flowPara4738">create_tag_addr        (P2TH)</flowPara><flowPara
              style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.25px;font-family:monospace;-inkscape-font-specification:monospace"
              id="flowPara4253-9">transfer_amount   (OP_RETURN)</flowPara></flowRoot>        <path
            style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.08044767px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"

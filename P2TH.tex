@@ -8,7 +8,7 @@
 ]{doclicense}
 
 %opening
-\title{Pay-to-TagAddress (P2TA): Tagging blockchain transactions for efficient queryability}
+\title{Pay-to-TagHash (P2TH): Tagging blockchain transactions for efficient queryability}
 \author{Hans Robeers\\ \texttt{hrobeers@protonmail.com}\\ \url{https://twitter.com/hrobeers}}
 
 \begin{document}
@@ -19,7 +19,7 @@
 Multiple applications are using existing blockchains as a communication network.
 Most of these implementations are scanning to blockchain for transactions matching their own format.
 However, this requires a full blockchain node and processing a large blockchain to find application specific transactions can become expensive to execute.
-This paper proposes a tagging mechanism, Pay-to-TagAddress (P2TA), that allows efficient lookup of application specific transactions based on the addition of transaction outputs to deterministic tagged addresses. P2TA also allows thin clients to find application specific messages using standard functions exposed by the widely available blockchain explorers.
+This paper proposes a tagging mechanism, Pay-to-TagHash (P2TH), that allows efficient lookup of application specific transactions based on the addition of transaction outputs to deterministic tagged addresses. P2TH also allows thin clients to find application specific messages using standard functions exposed by the widely available blockchain explorers.
 \end{abstract}
 
 \doclicenseThis
@@ -65,7 +65,7 @@ $ bitcoin-tool --input-file <(echo "my tag" | openssl sha256 -binary) \
 \section{Tagging transactions}
 To tag a transaction, a Pay-to-PubkeyHash output to a tagged address is added to the transaction's outputs.
 For the output to be valid, it's value may need to be non-zero depending on the blockchain used.
-Although this transaction output is indistinguishable from a standard Pay-to-PubkeyHash output, we refer to these outputs as Pay-to-TagAddress or P2TA in short.
+Although this transaction output is indistinguishable from a standard Pay-to-PubkeyHash output, we refer to these outputs as Pay-to-TagHash or P2TH in short.
 
 If we define the function \verb|address_for_tag(tag)| as the procedure described in section~\ref{sec:taggedaddress}, the following bitcoin command creates a tagged transaction with tag ``my tag''.
 
@@ -95,30 +95,30 @@ Efficiently finding transactions tagged by a known tag is done as follows:
 \section{Tag salting}
 Tags are usually human readable and human generated rather than randomly generated.
 There is a high probability for tags not to be unique.
-Therefore, applications using P2TA should be able to cope with unrelated transactions coming in on the tagged address, and lower the client's performance.
+Therefore, applications using P2TH should be able to cope with unrelated transactions coming in on the tagged address, and reduce the client's performance.
 A reasonable technique to lower the risk on tag collisions, is adding a publicly known salt to the tag.
 This salt might be hard coded in the client application or be randomly generated and broadcast to the public.
 It should be noted that salting cannot mitigate intentional ``tag spamming'', but it mitigates unintentional collisions.
 
 
 \section{Tag spamming}
-P2TA applications can be attacked by spamming their tag addresses.
+P2TH applications can be attacked by spamming their tagged addresses.
 Tag spamming can reduce the applications performance significantly by increasing the amount of required transaction lookups.
 In extreme cases it could even result in a full denial of service (DoS attack).
 This section proposes counter measures to ``tag spamming''.
 
 \subsection{Sent address black-listing}
 While parsing the tagged transactions, addresses sending many application unrelated messages to the tagged address can be blacklisted.
-The P2TA application can then ignore all transactions originating from the blacklisted addresses.
+The P2TH application can then ignore all transactions originating from the blacklisted addresses.
 This counter measure is quite naive, as spammers can easily use a different address for every spam message.
-It might also happen that legitimate addresses get blacklisted therefore compromise the proper functioning of the application.
+It might also happen that legitimate addresses get blacklisted and compromise the proper functioning of the application.
 
 \subsection{Proof-of-Burn}
-An application can require the P2TA output to burn a specific amount,
+An application can require the P2TH output to burn a specific amount,
 which would make it costly for attackers to execute a DoS attack.
 Spam transactions would still show up in the incoming transaction lookup for the tagged address,
 but the client can ignore all transactions below the threshold amount.
-Proof-of-Burn requires the P2TA output to be unspendable, meaning that the private key should not be recoverable from the tag and salt.
+Proof-of-Burn requires the P2TH output to be unspendable, meaning that the private key should not be recoverable from the tag and salt.
 Therefore a different address generation procedure is required for a Proof-of-Burn protected implementation.
 Instead of generating the private key, we propose to generate the public key as the hash of the tag + salt.
 
@@ -150,21 +150,21 @@ Therefore it is recommended to implement fallback service calls using third-part
 BIP32~\cite{Wui12} proposes a mechanism to generate a fully deterministic tree of private or public keys based on a single seed.
 The tag and salt can be used as the seed to generate such a tree.
 Applications that model their messages as a chain of transactions can use such a tree to map it's messages on.
-Finding all transactions with a single tag, becomes considerably more expensive than for a single tag address as it requires an extra address lookup for every application message.
-However, since every message has a unique tag address, attacking the entire application by ``tag spamming'' becomes practically infeasible.
+Finding all transactions with a single tag, becomes considerably more expensive than for a single tagged address as it requires an extra address lookup for every application message.
+However, since every message has a unique tagged address, attacking the entire application by ``tag spamming'' becomes practically infeasible.
 
 
 \section{Use case: PeerAssets}
 This section proposes a performance improvement to the PeerAssets~\cite{Pchem} paper as a use case.
 Contrary to the Peershare~\cite{Lee13} project that creates it's own blockchain, the PeerAssets paper proposes a way to register, distribute and trade assets on the Peercoin~\cite{King12} blockchain.
-A naive implementation of P2TA could take the form of adding a simple ``PeerAssets'' tag to every PeerAssets specific transaction, which would allow a thin client to parse only the application specific transactions.
+A naive implementation of P2TH could take the form of adding a simple ``PeerAssets'' tag to every PeerAssets specific transaction, which would allow a thin client to parse only the application specific transactions.
 However, a slightly more advanced tagging mechanism is proposed in this section.
 
 \subsection{Deck spawning}
 The process to register a new asset on the blockchain is referred to as ``deck spawning''.
 A deck is spawned by publishing a message that claims ownership over a specific asset. From that point on, only the spawning address is allowed to issue tokens of that asset.
 Therefore, an efficient lookup mechanism to check if a specific asset already exists without the need to parse all blockchain transactions, improves the client's performance considerably.
-For deck spawning lookup, one P2TA output for tag \verb|"PeerAssets/deck spawning"+salt|, is added to the transaction.
+For deck spawning lookup, one P2TH output for tag \verb|"PeerAssets/deck spawning"+salt|, is added to the transaction.
 The resulting transaction outputs for a deck spawning transaction look as follows:
 
 \begin{scriptsize}\begin{verbatim}
@@ -203,7 +203,7 @@ OP_DUP OP_HASH160 <pk_hash_for_tag(deck_spawn_txid)> OP_EQUALVERIFY OP_CHECKSIG
 \end{verbatim}\end{scriptsize}
 
 Figure \ref{fig:txn_relations} illustrates the one-to-many relationship between the spawning and issuing transactions.
-The procedure of generating the tag address from the create\_txn\_id is visualised through fnc\_tag\_address.
+The procedure of generating the tagged address from the create\_txn\_id is visualised through fnc\_tag\_address.
 Note that the card issue transaction only differs from the transfer transaction by it's input being the create\_addr.
 
 
@@ -215,11 +215,11 @@ The deck spawning salt, or even the generated tagged address, can be hard coded 
 \section{Conclusion}
 Tagging transactions allows the creation of thin clients for blockchain applications that rely on historical data.
 This is accomplished by using only standard lookup functions for addresses and transactions.
-Tag address creation based on generating the private key from a publicly known seed results in insecure addresses.
-However, tag addresses should not be used for value storage and therefore a secure address in not needed for this purpose.
+Tagged address creation based on generating the private key from a publicly known seed results in insecure addresses.
+However, tagged addresses should not be used for value storage and therefore a secure address in not needed for this purpose.
 An alternative could be to generate address' the public key based on the tag and salt.
 This makes funds sent to it practically unspendable, and can act as a Proof-of-Burn mechanism to prevent ``tag spamming''.
-Or a tag address can be generated from a secret tag while only communicating the tagged address itself, which would make the funds only spendable by the creator if a secure salt is chosen.
+Or a tagged address can be generated from a secret tag while only communicating the tagged address itself, which would make the funds only spendable by the creator if a secure salt is chosen.
 By not sending funds to an unspendable address, they can be redeemed by anyone knowing or guessing the tag and salt, leaving the blockchain some extra puzzles.
 
 

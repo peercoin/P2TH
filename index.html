@@ -120,6 +120,33 @@ OP_DUP OP_HASH160 &lt;pk_hash_for_tag(deck_spawn_txid)&gt; OP_EQUALVERIFY OP_CHE
 <h2 id="conclusion">Conclusion</h2>
 <p>Tagging transactions allows the creation of thin clients for blockchain applications that rely on historical data. This is accomplished by using only standard lookup functions for addresses and transactions. Tagged address creation based on generating the private key from a publicly known seed results in insecure addresses. However, tagged addresses should not be used for value storage and therefore a secure address in not needed for this purpose. An alternative could be to generate address’ the public key based on the tag and salt. This makes funds sent to it practically unspendable, and can act as a Proof-of-Burn mechanism to prevent “tag spamming”. Or a tagged address can be generated from a secret tag while only communicating the tagged address itself, which would make the funds only spendable by the creator if a secure salt is chosen. By not sending funds to an unspendable address, they can be redeemed by anyone knowing or guessing the tag and salt, leaving the blockchain some extra puzzles.</p>
 
+
+
+<div id="disqus_thread"></div>
+<script>
+/**
+* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+
+s.src = '//p2thpaper.disqus.com/embed.js';
+
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
 <h2 id="conclusion">References</h2>
 <p>S. Nakamoto, <em>Bitcoin: A Peer-to-Peer Electronic Cash System</em>, <a href="https://bitcoin.org/bitcoin.pdf" class="uri">https://bitcoin.org/bitcoin.pdf</a>, 2008.</p>
 <p>S. King, S. Nadal, <em>PPCoin: Peer-to-Peer Crypto-Currency with Proof-of-Stake</em>, <a href="https://peercoin.net/whitepaper" class="uri">https://peercoin.net/whitepaper</a>, 2012.</p>
